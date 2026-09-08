@@ -1,0 +1,1313 @@
+<title>5254 Distribution Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink-0: #060606;
+    --ink-1: #0e0e0e;
+    --ink-2: #171717;
+    --ink-3: #1e1e1e;
+    --line: rgba(244, 240, 235, 0.07);
+    --line-2: rgba(244, 240, 235, 0.14);
+    --fg: #f4f0eb;
+    --fg-2: rgba(244, 240, 235, 0.72);
+    --fg-3: rgba(244, 240, 235, 0.48);
+    --fg-4: rgba(244, 240, 235, 0.28);
+    --amber: #e9a030;
+    --orange: #d96a1e;
+    --rose: #c94f5c;
+    --gold: #f0c060;
+    --green: #7dbf74;
+    --font-display: 'Bebas Neue', 'Arial Narrow', Impact, sans-serif;
+    --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-mono: 'DM Mono', 'Courier New', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ink-0);
+    color: var(--fg);
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: 999;
+    mix-blend-mode: overlay;
+  }
+  ::selection { background: rgba(233, 160, 48, 0.28); color: var(--fg); }
+
+  /* Layout ----------------------------------------------------------- */
+  .wrap {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 clamp(1.2rem, 4vw, 3.5rem);
+    position: relative;
+  }
+  .grid-index {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+  @media (max-width: 960px) {
+    .grid-index { grid-template-columns: 1fr; gap: 1.5rem; }
+    .toc { position: static !important; }
+  }
+
+  /* Hero ------------------------------------------------------------- */
+  .hero {
+    padding: 4.5rem 0 5.5rem;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--fg-4);
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.6rem, 10vw, 8.2rem);
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .hero h1 span {
+    background: linear-gradient(130deg, var(--amber) 0%, var(--rose) 65%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    max-width: 640px;
+    margin-top: 1.8rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    color: var(--fg-3);
+    font-weight: 300;
+  }
+  .hero-meta {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .hero-meta-item .k {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.22em;
+    color: var(--fg-4);
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+  .hero-meta-item .v {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+    color: var(--fg);
+  }
+  .hero-meta-item .v small {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--fg-3);
+    display: block;
+    margin-top: 0.1rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .horizon {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--amber) 35%, var(--rose) 65%, transparent);
+    opacity: 0.5;
+    margin: 0.4rem 0 0;
+  }
+
+  /* TOC -------------------------------------------------------------- */
+  .toc {
+    position: sticky;
+    top: 2rem;
+    padding-top: 4rem;
+  }
+  .toc-title {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.28em;
+    color: var(--fg-4);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .toc a {
+    display: flex;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.11em;
+    color: var(--fg-3);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0.15rem 0;
+    transition: color 0.18s;
+  }
+  .toc a:hover { color: var(--fg); }
+  .toc a .num { color: var(--fg-4); flex-shrink: 0; }
+
+  /* Sections --------------------------------------------------------- */
+  section.chapter {
+    padding: 5rem 0 1rem;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 1.5rem;
+  }
+  section.chapter:first-of-type { border-top: none; padding-top: 4rem; }
+
+  .chapter-head {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1.5rem;
+    align-items: baseline;
+    margin-bottom: 2.5rem;
+  }
+  .chapter-num {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.28em;
+    color: var(--fg-4);
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line-2);
+  }
+  .chapter-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 4.4vw, 3.6rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .chapter-title em {
+    font-style: normal;
+    color: var(--amber);
+  }
+  .chapter-lede {
+    grid-column: 2;
+    margin-top: 0.9rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--fg-3);
+    font-size: 1.05rem;
+    max-width: 620px;
+  }
+
+  /* Prose ------------------------------------------------------------ */
+  .prose {
+    max-width: 780px;
+  }
+  .prose p {
+    margin: 0 0 1.15rem;
+    color: var(--fg-2);
+  }
+  .prose p strong { color: var(--fg); font-weight: 500; }
+  .prose ul, .prose ol {
+    padding-left: 1.15rem;
+    color: var(--fg-2);
+    margin: 0 0 1.4rem;
+  }
+  .prose li { margin-bottom: 0.4rem; }
+  .prose li strong { color: var(--fg); font-weight: 500; }
+
+  a.link, .prose a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(240, 192, 96, 0.32);
+    transition: border-color 0.18s, color 0.18s;
+  }
+  a.link:hover, .prose a:hover {
+    color: var(--fg);
+    border-color: var(--fg);
+  }
+
+  /* Tables ----------------------------------------------------------- */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 0 -0.5rem;
+    padding: 0 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--fg-4) transparent;
+  }
+  .table-wrap::-webkit-scrollbar { height: 8px; }
+  .table-wrap::-webkit-scrollbar-thumb { background: var(--fg-4); border-radius: 4px; }
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-serif);
+    font-size: 0.94rem;
+    min-width: 640px;
+  }
+  table.data thead th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.24em;
+    color: var(--fg-4);
+    text-transform: uppercase;
+    padding: 0.6rem 0.9rem 0.75rem;
+    border-bottom: 1px solid var(--line-2);
+    font-weight: 400;
+    white-space: nowrap;
+    vertical-align: bottom;
+  }
+  table.data tbody td {
+    padding: 0.95rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--fg-2);
+    vertical-align: top;
+  }
+  table.data tbody tr:hover { background: rgba(244, 240, 235, 0.018); }
+  table.data td .name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    color: var(--fg);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+  table.data td .sub {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.13em;
+    color: var(--fg-4);
+    text-transform: uppercase;
+    display: block;
+  }
+  table.data td.mono {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+  }
+  table.data td.mono a { word-break: break-word; }
+
+  /* Priority pills --------------------------------------------------- */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.55rem 0.24rem;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .pill::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .pill-p1 { color: var(--amber); }
+  .pill-p2 { color: var(--rose); }
+  .pill-p3 { color: var(--fg-4); }
+  .pill-open { color: var(--green); }
+  .pill-hard { color: var(--fg-4); }
+
+  /* Genre chips (filter) --------------------------------------------- */
+  .genre-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.42rem 0.85rem;
+    background: transparent;
+    color: var(--fg-3);
+    border: 1px solid var(--line-2);
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .chip:hover { color: var(--fg); border-color: var(--fg-3); }
+  .chip.active {
+    color: var(--ink-0);
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+
+  /* Callouts / notes ------------------------------------------------- */
+  .note {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 1.4rem 1.6rem;
+    background: var(--ink-1);
+    border-left: 2px solid var(--amber);
+    margin: 1.5rem 0 2rem;
+  }
+  .note .note-k {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.28em;
+    color: var(--amber);
+    text-transform: uppercase;
+  }
+  .note p { margin: 0; color: var(--fg-2); }
+  .note.rose { border-left-color: var(--rose); }
+  .note.rose .note-k { color: var(--rose); }
+
+  /* Card grids ------------------------------------------------------- */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin: 1rem 0 2rem;
+  }
+  .card {
+    padding: 1.4rem 1.5rem;
+    background: var(--ink-0);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px; height: 0;
+    background: var(--amber);
+    transition: height 0.28s;
+  }
+  .card:hover::before { height: 100%; }
+  .card:hover { background: rgba(244, 240, 235, 0.02); }
+  .card .k {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.22em;
+    color: var(--fg-4);
+    text-transform: uppercase;
+  }
+  .card .h {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    letter-spacing: 0.03em;
+    color: var(--fg);
+    line-height: 1.05;
+  }
+  .card .d {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--fg-3);
+    line-height: 1.55;
+  }
+  .card .m {
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--fg-3);
+    word-break: break-word;
+  }
+
+  /* Timeline (90-day plan) ------------------------------------------ */
+  .timeline {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0;
+    margin: 1.5rem 0 2rem;
+  }
+  .tl-block {
+    display: contents;
+  }
+  .tl-when {
+    padding: 1.6rem 1rem 1.6rem 0;
+    border-top: 1px solid var(--line-2);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    color: var(--amber);
+    text-transform: uppercase;
+  }
+  .tl-what {
+    padding: 1.6rem 0 1.6rem 1.6rem;
+    border-top: 1px solid var(--line-2);
+    border-left: 1px solid var(--line-2);
+    position: relative;
+  }
+  .tl-what::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 1.9rem;
+    width: 9px; height: 9px;
+    background: var(--ink-0);
+    border: 1px solid var(--amber);
+    border-radius: 50%;
+  }
+  .tl-what h4 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    margin: 0 0 0.6rem;
+    color: var(--fg);
+    font-weight: 400;
+  }
+  .tl-what ol {
+    margin: 0;
+    padding: 0;
+    counter-reset: step;
+    list-style: none;
+  }
+  .tl-what li {
+    counter-increment: step;
+    padding-left: 2.4rem;
+    position: relative;
+    margin-bottom: 0.55rem;
+    color: var(--fg-2);
+    font-size: 0.95rem;
+  }
+  .tl-what li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0; top: 0.15rem;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--fg-4);
+  }
+
+  /* Big stat row ----------------------------------------------------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0;
+    border: 1px solid var(--line-2);
+    margin: 1.5rem 0 2.5rem;
+  }
+  .stat {
+    padding: 1.6rem 1.4rem;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child { border-right: none; }
+  .stat .n {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--fg);
+    background: linear-gradient(130deg, var(--amber), var(--rose));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat .l {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    color: var(--fg-4);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+  @media (max-width: 720px) {
+    .stat { border-right: none; border-bottom: 1px solid var(--line); }
+    .stat:last-child { border-bottom: none; }
+  }
+
+  /* Spider tree quick-viz -------------------------------------------- */
+  .tree {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    line-height: 1.9;
+    color: var(--fg-2);
+    background: var(--ink-1);
+    padding: 1.6rem 1.8rem;
+    border-left: 2px solid var(--rose);
+    overflow-x: auto;
+    margin: 1rem 0 2rem;
+    white-space: pre;
+    letter-spacing: 0.02em;
+  }
+  .tree .b { color: var(--fg); }
+  .tree .a { color: var(--amber); }
+  .tree .r { color: var(--rose); }
+
+  /* Footer ----------------------------------------------------------- */
+  footer {
+    padding: 4rem 0 5rem;
+    margin-top: 3rem;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    align-items: end;
+  }
+  footer .fl-brand {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    color: var(--fg);
+  }
+  footer .fl-meta {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
+    color: var(--fg-4);
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 2;
+  }
+  @media (max-width: 640px) {
+    footer { grid-template-columns: 1fr; text-align: left; }
+    footer .fl-meta { text-align: left; }
+  }
+
+  /* Utility ---------------------------------------------------------- */
+  .anchor-list {
+    columns: 2;
+    column-gap: 2rem;
+    font-family: var(--font-serif);
+    font-size: 0.98rem;
+    color: var(--fg-2);
+    margin: 0.5rem 0 2rem;
+  }
+  .anchor-list p { margin: 0 0 0.6rem; break-inside: avoid; }
+  .anchor-list strong { color: var(--fg); font-weight: 500; }
+  @media (max-width: 720px) { .anchor-list { columns: 1; } }
+
+  h3.subhead {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--fg);
+    margin: 2.4rem 0 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  h3.subhead::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--amber);
+    vertical-align: middle;
+    margin-right: 0.8rem;
+    margin-bottom: 0.28rem;
+  }
+
+  :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <!-- HERO ================================================================== -->
+  <header class="hero">
+    <div class="hero-eyebrow">Dossier &middot; 5254 Music &middot; 2026 &middot; Interno</div>
+    <h1>Mapa total de <span>distribución.</span></h1>
+    <p class="hero-sub">
+      Un árbol operativo — de la raíz (distribuidora) a las hojas (contacto individual) —
+      para que cada track de Fzanelli sepa exactamente dónde va, quién lo escucha primero,
+      y por qué. Metodología <em>spider tree</em>: nada de listas sueltas, todo llega a una acción.
+    </p>
+    <div class="horizon"></div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="k">Artista</span><span class="v">Fzanelli<small>Argentino en Barcelona</small></span></div>
+      <div class="hero-meta-item"><span class="k">Sello</span><span class="v">5254 Music<small>Independiente</small></span></div>
+      <div class="hero-meta-item"><span class="k">Género núcleo</span><span class="v">Afro House<small>+ tech · latin · amapiano</small></span></div>
+      <div class="hero-meta-item"><span class="k">Catálogo</span><span class="v">8 Tracks<small>Publicados a 2026</small></span></div>
+      <div class="hero-meta-item"><span class="k">Rutas</span><span class="v">6 Continentes<small>Escaneadas aquí</small></span></div>
+    </div>
+  </header>
+
+  <!-- BODY GRID ============================================================= -->
+  <div class="grid-index">
+
+    <!-- TOC -->
+    <aside class="toc">
+      <div class="toc-title">Índice</div>
+      <ul>
+        <li><a href="#c0"><span class="num">00</span><span>Diagnóstico</span></a></li>
+        <li><a href="#c1"><span class="num">01</span><span>Distribuidoras</span></a></li>
+        <li><a href="#c2"><span class="num">02</span><span>Sellos</span></a></li>
+        <li><a href="#c3"><span class="num">03</span><span>Playlists</span></a></li>
+        <li><a href="#c4"><span class="num">04</span><span>Radios &amp; Pools</span></a></li>
+        <li><a href="#c5"><span class="num">05</span><span>Prensa &amp; PR</span></a></li>
+        <li><a href="#c6"><span class="num">06</span><span>DJs Target</span></a></li>
+        <li><a href="#c7"><span class="num">07</span><span>Booking / Mgmt</span></a></li>
+        <li><a href="#c8"><span class="num">08</span><span>Sync / Publishing</span></a></li>
+        <li><a href="#c9"><span class="num">09</span><span>Escenarios</span></a></li>
+        <li><a href="#c10"><span class="num">10</span><span>Diferenciales</span></a></li>
+        <li><a href="#c11"><span class="num">11</span><span>Plan 90 días</span></a></li>
+        <li><a href="#c12"><span class="num">12</span><span>TL;DR</span></a></li>
+      </ul>
+    </aside>
+
+    <!-- CONTENT -->
+    <main>
+
+      <!-- 00 DIAGNÓSTICO ==================================================== -->
+      <section id="c0" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">00</div>
+          <h2 class="chapter-title">Diagnóstico <em>rápido.</em></h2>
+        </div>
+
+        <div class="prose">
+          <p>
+            Fzanelli es Francesco Zanelli: DJ y productor argentino radicado en Barcelona, con foco en
+            Afro House y electrónica melódica. Tiene 8 releases (<em>Lo que pasa · Come Back · Ahyeh · Move · Stars · Be The One · Get Off The Way · I Know You Know feat. LUNA</em>),
+            un sello propio <strong>5254 Music</strong>, y una gira 2026 que ya toca cinco mercados
+            latinos: Buenos Aires, Montevideo, São Paulo, Santiago y Medellín.
+          </p>
+          <p>
+            La <strong>ventaja diferencial</strong> no es el sonido — hay muchos afro house sonando —
+            es la doble identidad AR ↔ BCN, el sello boutique, y el corredor LATAM 2026.
+            Todo el plan que sigue apalanca eso.
+          </p>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><div class="n">8</div><div class="l">Releases 2022→26</div></div>
+          <div class="stat"><div class="n">5</div><div class="l">Ciudades LATAM confirmadas</div></div>
+          <div class="stat"><div class="n">6</div><div class="l">DSPs con perfil activo</div></div>
+          <div class="stat"><div class="n">4</div><div class="l">Géneros mapeados</div></div>
+          <div class="stat"><div class="n">1</div><div class="l">Sello propio (5254)</div></div>
+        </div>
+
+        <div class="tree"><span class="b">FZANELLI</span>
+├─ <span class="a">ORGÁNICO</span>
+│   ├─ Playlists editoriales (Spotify · Apple · Anghami · Deezer)
+│   ├─ Playlists indie (Groover · SubmitHub · PlaylistLookup · One-Submit)
+│   ├─ Radios (Ibiza Global · Loca · Rinse · NTS · Delta · Nova · HouseTech)
+│   ├─ DJ pools (Digital DJ Pool · ZIPDJ · Beatport LINK)
+│   ├─ Comunidad (Discord · Reddit · Newsletter · Groove Lab challenge)
+│   └─ Prensa narrativa (DJ Mag ES · Beatportal · Vice · Playground)
+├─ <span class="a">PAGO</span>
+│   ├─ Distribuidora sello (Label Worx · Proton · Symphonic)
+│   ├─ Playlist push (Groover €100 / SubmitHub $40)
+│   ├─ Sound seeding TikTok (20-40 nano-creators)
+│   ├─ PR agency (Rocket · Listen Up · Only Movements)
+│   └─ Vinyl 300u (Phonica · Hard Wax · Kristina · Rush Hour)
+└─ <span class="r">DIFERENCIAL</span>
+    ├─ Sync/publishing (SGAE registrado → Audiosocket · La Crème)
+    ├─ Splice sample pack a nombre Fzanelli
+    ├─ 5254 Radio mensual (Mixcloud + YT + Spotify podcast)
+    ├─ Cercle low-budget (Montjuïc · Park Güell · La Boca)
+    ├─ Groove Lab → remix challenge
+    ├─ Firma sonora (producer tag "5254")
+    └─ Colab estratégica AR voz + productor SA</div>
+      </section>
+
+      <!-- 01 DISTRIBUIDORAS ================================================= -->
+      <section id="c1" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">01</div>
+          <h2 class="chapter-title">Distribuidoras &mdash; la <em>raíz.</em></h2>
+          <p class="chapter-lede">Antes que sellos, playlists o radios, decide quién entrega tu música al mundo. Para un sello electrónico priorizado en Beatport, DistroKid no es suficiente.</p>
+        </div>
+
+        <h3 class="subhead">Para 5254 Music</h3>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Distribuidora</th><th>Ideal para</th><th>Coste</th><th>Fortalezas</th><th>Cómo entrar</th></tr></thead>
+          <tbody>
+            <tr><td><span class="name">Label Worx</span><span class="sub">Recomendado P1</span></td><td>Sellos con foco Beatport / Traxsource</td><td>~15% comisión</td><td>Delivery directo a Beatport, DJ pools incluidos, metadata pro. Beatport chart placements comprobados.</td><td class="mono"><a class="link" href="https://www.label-worx.com">label-worx.com</a> &middot; solicitar aprobación como sello</td></tr>
+            <tr><td><span class="name">Proton</span><span class="sub">Alternativa boutique</span></td><td>Sellos electrónicos underground</td><td>Comisión</td><td>Curación editorial, deals con 850 sellos, respeto de la escena.</td><td class="mono"><a class="link" href="https://protonradio.com">protonradio.com</a> &middot; Proton Sound System</td></tr>
+            <tr><td><span class="name">Symphonic</span><span class="sub">Multi-género</span></td><td>Sellos con brazo sync activo</td><td>Suscripción / comisión</td><td>Sync licensing propio, buen soporte global.</td><td class="mono"><a class="link" href="https://symphonic.com/">symphonic.com</a></td></tr>
+            <tr><td><span class="name">FUGA</span><span class="sub">Escala alta</span></td><td>Sellos con catálogo grande</td><td>Alto</td><td>Analytics editoriales, pitching DSP fuerte.</td><td class="mono">fuga.com &middot; requiere volumen</td></tr>
+            <tr><td><span class="name">Label Engine</span><span class="sub">Integraciones</span></td><td>Sellos que quieren 1001Tracklists + SC repost integrado</td><td>Suscripción</td><td>Integraciones sólidas nativas.</td><td class="mono">label-engine.com</td></tr>
+          </tbody>
+        </table></div>
+
+        <h3 class="subhead">Para releases individuales / prueba</h3>
+        <div class="card-grid">
+          <div class="card"><span class="k">Volumen alto</span><span class="h">DistroKid</span><span class="d">$22/año ilimitado. No priorizado en Beatport, pero útil para edits y prototipos.</span></div>
+          <div class="card"><span class="k">Publishing pro</span><span class="h">TuneCore</span><span class="d">$14.99/single. Reparto sync/publishing.</span></div>
+          <div class="card"><span class="k">Startup</span><span class="h">Amuse</span><span class="d">Free tier o $24.99/año.</span></div>
+          <div class="card"><span class="k">MENA</span><span class="h">iMusician</span><span class="d">Pitch a Anghami (MENA) y Deezer editorial.</span></div>
+          <div class="card"><span class="k">Brand deals</span><span class="h">UnitedMasters</span><span class="d">Sync licensing con marcas grandes.</span></div>
+          <div class="card"><span class="k">Selectivo</span><span class="h">AWAL</span><span class="d">Si te aceptan, servicios de sello con comisión.</span></div>
+        </div>
+
+        <div class="note"><span class="note-k">Acción P1</span><p>Migra <strong>5254 Music</strong> a Label Worx o Proton para dominar Beatport. Mantén DistroKid solo para prototipos.</p></div>
+      </section>
+
+      <!-- 02 SELLOS ========================================================== -->
+      <section id="c2" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">02</div>
+          <h2 class="chapter-title">Sellos <em>objetivo.</em></h2>
+          <p class="chapter-lede">Filtrá por género para trabajar como un DJ que arma su crate. Prioridades: P1 = accionable esta semana, P2 = trabajar la relación, P3 = aspiracional.</p>
+        </div>
+
+        <div class="genre-filter" role="tablist" aria-label="Filtrar sellos por género">
+          <button class="chip active" data-genre="all" role="tab" aria-selected="true">Todos</button>
+          <button class="chip" data-genre="afro" role="tab" aria-selected="false">Afro House</button>
+          <button class="chip" data-genre="tech" role="tab" aria-selected="false">Tech House</button>
+          <button class="chip" data-genre="latin" role="tab" aria-selected="false">Latin House</button>
+          <button class="chip" data-genre="ama" role="tab" aria-selected="false">Amapiano</button>
+        </div>
+
+        <div class="table-wrap"><table class="data" id="labels-table">
+          <thead><tr><th>Sello</th><th>Género</th><th>País</th><th>Prio</th><th>Contacto / demo</th></tr></thead>
+          <tbody>
+            <!-- AFRO -->
+            <tr data-g="afro"><td><span class="name">MoBlack Records</span><span class="sub">Sin gatekeepers &middot; global afro champion</span></td><td>Afro House</td><td>IT / Global</td><td><span class="pill pill-p1">P1</span></td><td class="mono"><a class="link" href="mailto:demo@moblack.com">demo@moblack.com</a></td></tr>
+            <tr data-g="afro"><td><span class="name">Sondela Recordings</span><span class="sub">Afro imprint de Defected · profits a Bridges For Music</span></td><td>Afro House</td><td>UK / SA</td><td><span class="pill pill-p1">P1</span></td><td class="mono">Vía <a class="link" href="https://defected.com">defected.com</a> · LabelRadar</td></tr>
+            <tr data-g="afro"><td><span class="name">Get Physical Music</span><span class="sub">Africa Gets Physical series activa</span></td><td>Afro House</td><td>DE</td><td><span class="pill pill-p1">P1</span></td><td class="mono"><a class="link" href="https://www.labelradar.com/labels/getphysical/portal">LabelRadar portal</a></td></tr>
+            <tr data-g="afro"><td><span class="name">Realm Africa Records</span><span class="sub">Percusión orgánica</span></td><td>Afro House</td><td>UK / SA</td><td><span class="pill pill-p1">P1</span></td><td class="mono">RA / IG DM</td></tr>
+            <tr data-g="afro"><td><span class="name">Merecumbé</span><span class="sub">Afro-latino BCN &middot; encaje geográfico perfecto</span></td><td>Afro House</td><td>ES / BCN</td><td><span class="pill pill-p1">P1</span></td><td class="mono">IG DM</td></tr>
+            <tr data-g="afro"><td><span class="name">Connected Frequency</span><span class="sub">Imprint de Caiiro · afro house emotivo</span></td><td>Afro House</td><td>SA</td><td><span class="pill pill-p2">P2</span></td><td class="mono">IG @caiiro</td></tr>
+            <tr data-g="afro"><td><span class="name">Yoruba Records</span><span class="sub">Osunlade · deep soulful</span></td><td>Afro House</td><td>US</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web / IG</td></tr>
+            <tr data-g="afro"><td><span class="name">Ensis Records</span><span class="sub">Warner Music Group / Deep + Afro</span></td><td>Afro House</td><td>PL / WMG</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web submission form</td></tr>
+            <tr data-g="afro"><td><span class="name">Hey, location!</span><span class="sub">Techno + Afro DE</span></td><td>Afro House</td><td>DE</td><td><span class="pill pill-p2">P2</span></td><td class="mono"><a class="link" href="mailto:heylocationmusic@gmail.com">heylocationmusic@gmail.com</a></td></tr>
+            <tr data-g="afro"><td><span class="name">Sunday Sounds</span><span class="sub">Afro soulful</span></td><td>Afro House</td><td>SA</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web</td></tr>
+            <tr data-g="afro"><td><span class="name">Deep House Africa</span><span class="sub">Deep + Afro</span></td><td>Afro House</td><td>SA</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web / IG</td></tr>
+            <tr data-g="afro"><td><span class="name">Ofunia Records</span><span class="sub">Emergente · joyas</span></td><td>Afro House</td><td>SA</td><td><span class="pill pill-p2">P2</span></td><td class="mono">IG DM</td></tr>
+            <tr data-g="afro"><td><span class="name">Tribe Records</span><span class="sub">Percusivo &middot; deep</span></td><td>Afro House</td><td>SA</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web</td></tr>
+            <tr data-g="afro"><td><span class="name">Innervisions</span><span class="sub">Dixon / Âme · top-tier melódico</span></td><td>Afro House</td><td>DE</td><td><span class="pill pill-p3">P3</span></td><td class="mono"><a class="link" href="https://www.labelradar.com/labels/innervisions/portal">LabelRadar portal</a></td></tr>
+            <tr data-g="afro"><td><span class="name">Keinemusik</span><span class="sub">Aspiracional &middot; sin canal público</span></td><td>Afro House</td><td>DE</td><td><span class="pill pill-p3">P3</span></td><td class="mono">Vía relaciones</td></tr>
+            <tr data-g="afro"><td><span class="name">Cuttin' Headz</span><span class="sub">&amp;ME imprint · underground Keinemusik-adjacent</span></td><td>Afro House</td><td>DE</td><td><span class="pill pill-p3">P3</span></td><td class="mono">Vía Keinemusik ecosystem</td></tr>
+
+            <!-- TECH -->
+            <tr data-g="tech"><td><span class="name">Toolroom Records</span><span class="sub">Mark Knight · scouting activo</span></td><td>Tech House</td><td>UK</td><td><span class="pill pill-p1">P1</span></td><td class="mono"><a class="link" href="https://www.toolroomrecords.com">toolroomrecords.com</a> &middot; Toolroom Academy</td></tr>
+            <tr data-g="tech"><td><span class="name">Defected Records</span><span class="sub">Primera vez abriendo unsolicited demos</span></td><td>Tech House</td><td>UK</td><td><span class="pill pill-p1">P1</span></td><td class="mono">LabelRadar</td></tr>
+            <tr data-g="tech"><td><span class="name">Elrow Music</span><span class="sub">Palanca local BCN · tech house / techno</span></td><td>Tech House</td><td>ES / BCN</td><td><span class="pill pill-p1">P1</span></td><td class="mono">Web / IG</td></tr>
+            <tr data-g="tech"><td><span class="name">Los Bandidos Records</span><span class="sub">Origen argentino · palanca cultural fuerte</span></td><td>Tech House</td><td>AR</td><td><span class="pill pill-p1">P1</span></td><td class="mono"><a class="link" href="mailto:losbandi2@gmail.com">losbandi2@gmail.com</a></td></tr>
+            <tr data-g="tech"><td><span class="name">Digital Delight</span><span class="sub">Barcelona-born · Berlin-based</span></td><td>Tech House</td><td>BCN / DE</td><td><span class="pill pill-p1">P1</span></td><td class="mono">Web · Sishi Rösch / Diego Moreno</td></tr>
+            <tr data-g="tech"><td><span class="name">Spinnin' Deep</span><span class="sub">Talent Pool cada martes revisa</span></td><td>Tech House</td><td>NL</td><td><span class="pill pill-p1">P1</span></td><td class="mono"><a class="link" href="https://spinninrecords.com/talentpool">spinninrecords.com/talentpool</a></td></tr>
+            <tr data-g="tech"><td><span class="name">Anjunadeep</span><span class="sub">Pide streaming link, no attachment</span></td><td>Tech House</td><td>UK</td><td><span class="pill pill-p1">P1</span></td><td class="mono"><a class="link" href="https://anjunadeep.com">anjunadeep.com/demo-submission</a></td></tr>
+            <tr data-g="tech"><td><span class="name">Solid Grooves</span><span class="sub">Michael Bibi / Pawsa universe</span></td><td>Tech House</td><td>UK</td><td><span class="pill pill-p2">P2</span></td><td class="mono">IG / mgmt</td></tr>
+            <tr data-g="tech"><td><span class="name">Repopulate Mars</span><span class="sub">Lee Foss camp</span></td><td>Tech House</td><td>US</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Vía mgmt</td></tr>
+            <tr data-g="tech"><td><span class="name">Hot Creations</span><span class="sub">Jamie Jones</span></td><td>Tech House</td><td>UK</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web</td></tr>
+            <tr data-g="tech"><td><span class="name">Diynamic</span><span class="sub">Solomun · melodic/tech</span></td><td>Tech House</td><td>DE</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web</td></tr>
+            <tr data-g="tech"><td><span class="name">Space Yacht</span><span class="sub">Twitch live demo review</span></td><td>Tech House</td><td>US</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Twitch stream drops</td></tr>
+            <tr data-g="tech"><td><span class="name">House of (S)PUNK</span><span class="sub">Escena hardgroove BCN</span></td><td>Tech House</td><td>BCN</td><td><span class="pill pill-p2">P2</span></td><td class="mono">IG</td></tr>
+            <tr data-g="tech"><td><span class="name">Rebellion</span><span class="sub">Dennis Cruz camp</span></td><td>Tech House</td><td>UK</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web</td></tr>
+            <tr data-g="tech"><td><span class="name">DFTD / Glitterbox</span><span class="sub">Defected pipeline</span></td><td>Tech House</td><td>UK</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Vía Defected</td></tr>
+
+            <!-- LATIN -->
+            <tr data-g="latin"><td><span class="name">Latin Tech House Music</span><span class="sub">Fusión house + ritmos latinos</span></td><td>Latin House</td><td>ES / LATAM</td><td><span class="pill pill-p1">P1</span></td><td class="mono"><a class="link" href="https://labelsbase.net/latintechhousemusic">labelsbase.net/latintechhousemusic</a></td></tr>
+            <tr data-g="latin"><td><span class="name">Finest House Traxx</span><span class="sub">Acepta Afro/Latin/Brazilian grooves</span></td><td>Latin House</td><td>Global</td><td><span class="pill pill-p1">P1</span></td><td class="mono"><a class="link" href="https://finesthousetraxx.com/demos">finesthousetraxx.com/demos</a></td></tr>
+            <tr data-g="latin"><td><span class="name">Vamos Music</span><span class="sub">Dennis Cruz · afro-latin</span></td><td>Latin House</td><td>UK / Global</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web</td></tr>
+            <tr data-g="latin"><td><span class="name">Sirocco Music</span><span class="sub">Mediterranean electronic</span></td><td>Latin House</td><td>ES</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web</td></tr>
+            <tr data-g="latin"><td><span class="name">Nuevagenova</span><span class="sub">AR indie</span></td><td>Latin House</td><td>AR</td><td><span class="pill pill-p2">P2</span></td><td class="mono">IG DM</td></tr>
+            <tr data-g="latin"><td><span class="name">Insomniac Records — Latin</span><span class="sub">Sublabel latino US festival</span></td><td>Latin House</td><td>US</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web</td></tr>
+            <tr data-g="latin"><td><span class="name">HUGEL's imprint</span><span class="sub">Make The Girls Dance ecosystem</span></td><td>Latin House</td><td>FR</td><td><span class="pill pill-p3">P3</span></td><td class="mono">Vía booking</td></tr>
+
+            <!-- AMAPIANO -->
+            <tr data-g="ama"><td><span class="name">Afrika Hi-Fi</span><span class="sub">Open call vinilo · Kings &amp; Queens of Amapiano Vol.1</span></td><td>Amapiano</td><td>SA</td><td><span class="pill pill-open">Ventana abierta</span></td><td class="mono">Verificar deadline</td></tr>
+            <tr data-g="ama"><td><span class="name">Piano Hub</span><span class="sub">Emergente SA</span></td><td>Amapiano</td><td>SA</td><td><span class="pill pill-p2">P2</span></td><td class="mono">IG DM</td></tr>
+            <tr data-g="ama"><td><span class="name">Mayonie Productions</span><span class="sub">Zakes Bantwini</span></td><td>Amapiano</td><td>SA</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Vía mgmt</td></tr>
+            <tr data-g="ama"><td><span class="name">Back Noise Music Africa</span><span class="sub">Kususa (Universal SA)</span></td><td>Amapiano</td><td>SA</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Vía IG</td></tr>
+            <tr data-g="ama"><td><span class="name">New Money Gang</span><span class="sub">Amapiano indie</span></td><td>Amapiano</td><td>SA</td><td><span class="pill pill-p2">P2</span></td><td class="mono">Web</td></tr>
+            <tr data-g="ama"><td><span class="name">Reprise / Warner Amapiano</span><span class="sub">Requiere mgmt</span></td><td>Amapiano</td><td>SA / US</td><td><span class="pill pill-p3">P3</span></td><td class="mono">Vía mgmt / A&amp;R</td></tr>
+          </tbody>
+        </table></div>
+
+        <div class="note rose"><span class="note-k">Regla amapiano</span><p>Nunca envíes amapiano puro a un sello sólo de house. Es un movimiento sudafricano cerrado. Entra vía colaboración o compilación abierta, o pierdes credibilidad.</p></div>
+      </section>
+
+      <!-- 03 PLAYLISTS ====================================================== -->
+      <section id="c3" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">03</div>
+          <h2 class="chapter-title">Playlists &mdash; otro <em>plano.</em></h2>
+          <p class="chapter-lede">Un track llega a más oídos vía playlist que vía radio hoy. Editoriales + independientes + curators individuales, cada uno con su ruta.</p>
+        </div>
+
+        <h3 class="subhead">Editoriales DSPs</h3>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>DSP</th><th>Playlists objetivo</th><th>Cómo pitchar</th></tr></thead>
+          <tbody>
+            <tr><td><span class="name">Spotify</span></td><td>Afro House · Deep House · Tech House Bangers · Musica Electronica Argentina · Barcelona Beats</td><td class="mono">Spotify for Artists · 7 días antes del release · narrativa AR/BCN dual identity</td></tr>
+            <tr><td><span class="name">Apple Music</span></td><td>Danceteria · Afro House · Latin Dance</td><td class="mono">Apple Music for Artists (pitch beta) + email al editor regional</td></tr>
+            <tr><td><span class="name">Amazon Music</span></td><td>Dance &amp; Electronic · Latin Electronic Dance</td><td class="mono">Vía distro (Symphonic / Label Worx)</td></tr>
+            <tr><td><span class="name">Deezer</span></td><td>Afro House · Electronic Latinx</td><td class="mono">Editorial pitch vía distro</td></tr>
+            <tr><td><span class="name">YouTube Music</span></td><td>Electronic ES · Dance LATAM</td><td class="mono">YT for Artists</td></tr>
+            <tr><td><span class="name">Anghami</span></td><td>MENA Dance · Afro House MENA</td><td class="mono"><a class="link" href="https://creators.anghami.com">creators.anghami.com</a> · Amplify program</td></tr>
+            <tr><td><span class="name">Tidal</span></td><td>Rising · House</td><td class="mono">Distro pitch</td></tr>
+          </tbody>
+        </table></div>
+
+        <h3 class="subhead">Playlists Afro House — targets independientes</h3>
+        <div class="card-grid">
+          <div class="card"><span class="k">Curator UNCOMMON</span><span class="h">Afro House 2026</span><span class="d">1.2M saves &mdash; el gigante del género.</span><span class="m">Groover · One-Submit</span></div>
+          <div class="card"><span class="k">Curator AFRODITE</span><span class="h">Afro House 2026 Top 100</span><span class="d">128K saves · curador confirmado accesible.</span><span class="m">SubmitHub · Groover</span></div>
+          <div class="card"><span class="k">Curator ChillYourMind</span><span class="h">Afro House Dance Party</span><span class="d">37K saves.</span><span class="m">ChillYourMind pitch form</span></div>
+          <div class="card"><span class="k">Curator TECH ME HOME</span><span class="h">Afro House 2026</span><span class="d">43.7K saves · buena tasa de aceptación.</span><span class="m">SubmitHub</span></div>
+          <div class="card"><span class="k">Curator Groover</span><span class="h">Afrodisiac Best Of</span><span class="d">Playlist oficial de Groover Obsessions.</span><span class="m">Groover pitch</span></div>
+          <div class="card"><span class="k">Curator Feel Decimal</span><span class="h">Deep &amp; Sunny 2026</span><span class="d">Nicho respetado por los afro heads.</span><span class="m">One-Submit</span></div>
+          <div class="card"><span class="k">Curator Maldo</span><span class="h">Afro House Sunset Mix</span><span class="d">Golden hour · perfect brand fit.</span><span class="m">IG DM</span></div>
+          <div class="card"><span class="k">Curator Future House Cloud</span><span class="h">Afro House 2026</span><span class="d">5K saves · emergente.</span><span class="m">SubmitHub</span></div>
+        </div>
+
+        <h3 class="subhead">Playlists Tech House — targets</h3>
+        <p class="prose">
+          <strong>Beatport Hype</strong> es tu vía si 5254 factura &lt;$15K/año: 84% más tráfico y 40% más ventas medias, playlists curadas por su equipo distribuidas al ecosistema Beatport LINK (mobile · web · Rekordbox · Serato).
+          Fuera de Beatport, pitch a: <em>Toolroom Tech House</em>, <em>Solid Grooves Selects</em>, <em>Repopulate Mars</em>, <em>Cuttin' Headz</em>, <em>elrow</em>, y los mismos indies UNCOMMON · TECH ME HOME.
+        </p>
+
+        <h3 class="subhead">Comparativa de plataformas de pitching</h3>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Plataforma</th><th>Coste</th><th>Cuándo usar</th><th>Ratio esperado</th></tr></thead>
+          <tbody>
+            <tr><td><span class="name">Groover</span></td><td class="mono">~€2/pitch · respuesta 7 días garantizada</td><td>Europeos, indie/electronic</td><td class="mono">20-40% feedback útil</td></tr>
+            <tr><td><span class="name">SubmitHub</span></td><td class="mono">$1-3/pitch</td><td>Nichos, volumen alto</td><td class="mono">3-15% aceptación</td></tr>
+            <tr><td><span class="name">PlaylistPush</span></td><td class="mono">$150+ campaña</td><td>Cuando ya hay métricas</td><td class="mono">Managed</td></tr>
+            <tr><td><span class="name">DailyPlaylists</span></td><td class="mono">Suscripción</td><td>Afro / Afrobeat pitch directo</td><td class="mono">Solo curators activos</td></tr>
+            <tr><td><span class="name">One-Submit</span></td><td class="mono">Variable</td><td>Curators independientes específicos</td><td class="mono">Medio</td></tr>
+            <tr><td><span class="name">PlaylistLookup</span></td><td class="mono">Free / premium</td><td>Outreach manual · 2067+ house curators con email · <strong>oro puro</strong></td><td class="mono">Depende de ti</td></tr>
+            <tr><td><span class="name">Soundplate</span></td><td class="mono">Free / premium</td><td>Curator playlists inhouse</td><td class="mono">Medio</td></tr>
+            <tr><td><span class="name">isitagoodplaylist.com</span></td><td class="mono">Free</td><td>Verificar si un curator es real · <strong>anti-fraude · uso obligatorio</strong></td><td class="mono">—</td></tr>
+          </tbody>
+        </table></div>
+
+        <div class="note"><span class="note-k">Regla de oro</span><p>Nunca pagues playlist plays. Solo pitches. Verificá cada playlist con <a class="link" href="https://www.isitagoodplaylist.com">isitagoodplaylist.com</a> antes de gastar un euro.</p></div>
+      </section>
+
+      <!-- 04 RADIOS ========================================================== -->
+      <section id="c4" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">04</div>
+          <h2 class="chapter-title">Radios &amp; <em>DJ pools.</em></h2>
+          <p class="chapter-lede">Es donde suena el sonido "de verdad". Un pincheazo en Ibiza Global vale 100 playlist adds indies.</p>
+        </div>
+
+        <h3 class="subhead">Radios especializadas</h3>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Radio</th><th>País</th><th>Formato</th><th>Ruta</th></tr></thead>
+          <tbody>
+            <tr><td><span class="name">Ibiza Global Radio</span><span class="sub">Target ideal para tu perfil BCN</span></td><td>ES</td><td>24/7 house</td><td class="mono"><a class="link" href="https://www.ibizaglobalradio.com">ibizaglobalradio.com</a> · envío mixes vía web + IG</td></tr>
+            <tr><td><span class="name">Ibiza Live Radio</span></td><td>ES</td><td>103.7 FM · deep/tech/afro/balearic</td><td class="mono">Web contact form</td></tr>
+            <tr><td><span class="name">Loca FM</span></td><td>ES</td><td>Nacional tech house</td><td class="mono">Fiestón / Sunset Sessions</td></tr>
+            <tr><td><span class="name">Flaix FM</span></td><td>Catalunya</td><td>Electrónica</td><td class="mono">Web · target local</td></tr>
+            <tr><td><span class="name">Rinse FM</span></td><td>UK</td><td>House/tech/afro</td><td class="mono">Hosts ElectrAfrique (amapiano/afrobeat) · Circle (Afro &amp; vocal house)</td></tr>
+            <tr><td><span class="name">NTS Radio</span></td><td>UK / Global</td><td>Alt / left-field</td><td class="mono"><a class="link" href="https://www.nts.live">nts.live</a> · contactar residents</td></tr>
+            <tr><td><span class="name">Worldwide FM</span></td><td>UK / Global</td><td>Gilles Peterson global sounds</td><td class="mono">Vía curator team</td></tr>
+            <tr><td><span class="name">HouseTech Radio</span></td><td>Global</td><td>Afro &amp; Tech house dedicated</td><td class="mono">Web · shows programables</td></tr>
+            <tr><td><span class="name">Defected Radio Show</span></td><td>UK</td><td>Semanal DSP</td><td class="mono">Auto si firmás Defected/Sondela</td></tr>
+            <tr><td><span class="name">Toolroom Radio</span></td><td>UK</td><td>Mark Knight semanal</td><td class="mono">Vía Toolroom firmante</td></tr>
+            <tr><td><span class="name">Data Transmission Radio</span></td><td>UK</td><td>Underground</td><td class="mono">Web submissions</td></tr>
+            <tr><td><span class="name">Radio Nova</span></td><td>PT</td><td>Afro / Kuduro / Afro house</td><td class="mono">Bridge cultural PT ↔ BR ↔ Angola</td></tr>
+            <tr><td><span class="name">DELTA 90.3 FM</span><span class="sub">Ventaja local AR</span></td><td>AR</td><td>Electrónica BsAs</td><td class="mono">Web</td></tr>
+            <tr><td><span class="name">Vorterix / Blue</span></td><td>AR</td><td>Electrónica</td><td class="mono">Web</td></tr>
+            <tr><td><span class="name">BBC Radio 1 Dance</span></td><td>UK</td><td>Semi-mainstream</td><td class="mono">Vía sello · Danny Howard show</td></tr>
+            <tr><td><span class="name">BBC 1Xtra — Sian Anderson</span></td><td>UK</td><td>Afro / Amapiano</td><td class="mono">Vía plugger</td></tr>
+          </tbody>
+        </table></div>
+
+        <h3 class="subhead">DJ Pools (donde bajan los residentes)</h3>
+        <div class="card-grid">
+          <div class="card"><span class="k">$9.99/mes</span><span class="h">Digital DJ Pool</span><span class="d">200K tracks · house / tech / afro dedicado.</span></div>
+          <div class="card"><span class="k">Suscripción</span><span class="h">ZIPDJ</span><span class="d">860K tracks · 70 géneros · electrónica profunda.</span></div>
+          <div class="card"><span class="k">Suscripción</span><span class="h">DJcity</span><span class="d">Open-format + edits exclusivos.</span></div>
+          <div class="card"><span class="k">Suscripción</span><span class="h">BPM Supreme</span><span class="d">Mainstream / open.</span></div>
+          <div class="card"><span class="k">Suscripción</span><span class="h">Beatport LINK</span><span class="d">Standard EDM DJs.</span></div>
+          <div class="card"><span class="k">Suscripción</span><span class="h">Beatsource</span><span class="d">Open-format focus.</span></div>
+          <div class="card"><span class="k">Shortlist mensual</span><span class="h">DJ Pool Records</span><span class="d">Curated: Afro House April · Tech Selects · etc.</span></div>
+        </div>
+      </section>
+
+      <!-- 05 PRENSA ========================================================== -->
+      <section id="c5" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">05</div>
+          <h2 class="chapter-title">Prensa &amp; <em>PR.</em></h2>
+          <p class="chapter-lede">La narrativa importa. Con tu historia AR ↔ BCN + sello propio, cada release tiene ángulo editorial.</p>
+        </div>
+
+        <h3 class="subhead">Medios electrónicos</h3>
+        <div class="anchor-list">
+          <p><strong>DJ Mag ES</strong> — reviews · vía PR o pitch</p>
+          <p><strong>Mixmag ES/LATAM</strong> — cultura club</p>
+          <p><strong>Beatportal</strong> — Hype Picks = oro editorial</p>
+          <p><strong>Data Transmission</strong> — underground UK</p>
+          <p><strong>Decoded Magazine</strong> — techno/house UK</p>
+          <p><strong>6AM Group</strong> — US techno/house</p>
+          <p><strong>Dancing Astronaut</strong> — US EDM</p>
+          <p><strong>Insomniac Blog</strong> — US festival culture</p>
+          <p><strong>Vibe Agency journal</strong> — long-form house</p>
+          <p><strong>Afrohouse.se</strong> — nicho · featured artist</p>
+          <p><strong>When We Dip</strong> — melodic/afro activo</p>
+          <p><strong>Playground Magazine (Playy)</strong> — indie electronic</p>
+          <p><strong>Vice · i-D música</strong> — pitch narrativo</p>
+          <p><strong>Trax / Les Inrocks</strong> — francófono</p>
+          <p><strong>Groove Magazine (DE)</strong> — underground DE</p>
+          <p><strong>RockDelux electrónica</strong> — ES cultural</p>
+        </div>
+
+        <h3 class="subhead">Agencias PR</h3>
+        <div class="card-grid">
+          <div class="card"><span class="k">Alto rango</span><span class="h">Rocket Publicity</span><span class="d">House/electronic global. Reputación fuerte.</span></div>
+          <div class="card"><span class="k">Alto rango</span><span class="h">Listen Up</span><span class="d">Electronic underground UK.</span></div>
+          <div class="card"><span class="k">Medio</span><span class="h">Only Movements</span><span class="d">Melodic / indie dance.</span></div>
+          <div class="card"><span class="k">Medio</span><span class="h">The Girls Media</span><span class="d">UK dance.</span></div>
+          <div class="card"><span class="k">Alto</span><span class="h">Motormouth Media</span><span class="d">US dance.</span></div>
+          <div class="card"><span class="k">Medio</span><span class="h">Fresh Content Society</span><span class="d">TikTok / electronic.</span></div>
+        </div>
+
+        <h3 class="subhead">Pluggers / promo pools</h3>
+        <div class="prose">
+          <ul>
+            <li><strong>Reaktion DJ Promo</strong> (UK) — envía a 300+ DJs</li>
+            <li><strong>Kudos Records Promo</strong> (UK)</li>
+            <li><strong>Attack Magazine's Promoly</strong></li>
+            <li><strong>1001Tracklists Promo Campaign</strong> — construye ranking real de unique DJ support</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 06 DJs ============================================================ -->
+      <section id="c6" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">06</div>
+          <h2 class="chapter-title">DJs / <em>Tastemakers.</em></h2>
+          <p class="chapter-lede">Solo enviás con master final + fecha de release confirmada, link privado SoundCloud, y tu email. Nunca WAVs sueltos por Telegram.</p>
+        </div>
+
+        <h3 class="subhead">Afro House</h3>
+        <p class="prose">
+          Black Coffee &middot; Themba &middot; Caiiro &middot; Kususa &middot; Shimza &middot; Da Capo &middot; Culoe De Song &middot; Francis Mercier &middot; MoBlack &middot; HUGEL &middot; Adam Port &middot; &amp;ME &middot; Rampa &middot; Sef Kombo &middot; Louie Dunmore &middot; Enoo Napa &middot; Argento Dust &middot; Vintage Culture (crossover) &middot; Meduza (crossover)
+        </p>
+
+        <h3 class="subhead">Tech House</h3>
+        <p class="prose">
+          Michael Bibi &middot; Cloonee &middot; Pawsa &middot; James Hype &middot; John Summit &middot; Chris Stussy &middot; Solardo &middot; Fisher &middot; Mau P &middot; CID &middot; Chris Lake
+        </p>
+
+        <h3 class="subhead">Bridges Latin ↔ House</h3>
+        <p class="prose">
+          HUGEL (fr) &middot; Vintage Culture (br) &middot; Bhaskar (br) &middot; Kevin de Vries (br) &middot; Anfisa Letyago (it/latin) &middot; Nora En Pure &middot; Franky Rizardo &middot; Nico Stojan &middot; Hernan Cattáneo
+        </p>
+
+        <div class="note"><span class="note-k">Cómo llegar</span><p>(1) 1001Tracklists Promo Campaign · (2) mgmt vía IG · (3) Beatport promo pool si firmás con sello con Hype status · (4) intercambio de tracks pre-release con productores del mismo tier.</p></div>
+      </section>
+
+      <!-- 07 BOOKING ======================================================== -->
+      <section id="c7" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">07</div>
+          <h2 class="chapter-title">Booking &amp; <em>Mgmt.</em></h2>
+          <p class="chapter-lede">Visión largo plazo. Con tu ruta 2026 confirmada (BA · Montevideo · São Paulo · Santiago · Medellín), tenés tracción real que mostrar.</p>
+        </div>
+
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Agencia</th><th>Región</th><th>Prio</th><th>Por qué</th></tr></thead>
+          <tbody>
+            <tr><td><span class="name">Sangre</span></td><td>ES / LATAM</td><td><span class="pill pill-p1">P1</span></td><td>Bridge perfecto BA ↔ BCN · direct relationships con promoters LATAM y clubs europeos</td></tr>
+            <tr><td><span class="name">Urban Jungle</span></td><td>Brasil</td><td><span class="pill pill-p1">P1</span></td><td>Tu show São Paulo ya está · mgmt + booking + publishing + sello</td></tr>
+            <tr><td><span class="name">2NET</span></td><td>AR</td><td><span class="pill pill-p1">P1</span></td><td>Creamfields BA · Mar del Plata · Punta del Este</td></tr>
+            <tr><td><span class="name">Active Talent Agency</span></td><td>Global</td><td><span class="pill pill-p2">P2</span></td><td>Electronic booking &amp; management</td></tr>
+            <tr><td><span class="name">Liaison Artists</span></td><td>Global</td><td><span class="pill pill-p2">P2</span></td><td>MoBlack roster · si firmás con MoBlack, entrada natural</td></tr>
+            <tr><td><span class="name">30e</span></td><td>Brasil</td><td><span class="pill pill-p2">P2</span></td><td>Top promoter South America · $53M+ grosses</td></tr>
+            <tr><td><span class="name">Wasserman Music</span></td><td>Global</td><td><span class="pill pill-p3">P3</span></td><td>Tier top</td></tr>
+            <tr><td><span class="name">Paradigm</span></td><td>Global</td><td><span class="pill pill-p3">P3</span></td><td>Tier top</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+
+      <!-- 08 SYNC =========================================================== -->
+      <section id="c8" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">08</div>
+          <h2 class="chapter-title">Sync &amp; <em>Publishing.</em></h2>
+          <p class="chapter-lede">Dinero real. Poca gente lo pisa. Tu catálogo instrumental de afro house es material sync ideal: viajes, moda, sunset, moda LATAM.</p>
+        </div>
+
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Agencia</th><th>Foco</th><th>Comisión</th><th>Cómo entrar</th></tr></thead>
+          <tbody>
+            <tr><td><span class="name">Audiosocket / ASX Music</span></td><td>TV · film · ads · games</td><td class="mono">25–50%</td><td class="mono">Web application</td></tr>
+            <tr><td><span class="name">La Crème</span><span class="sub">Boutique Paris / NYC</span></td><td>Music supervision · sync · publishing</td><td class="mono">25–40%</td><td class="mono">Web · curated roster</td></tr>
+            <tr><td><span class="name">Symphonic Sync</span></td><td>Sync arm de la distro</td><td class="mono">30–40%</td><td class="mono">Auto si distribuís con Symphonic</td></tr>
+            <tr><td><span class="name">UnitedMasters Select</span></td><td>Brand deals</td><td class="mono">Variable</td><td class="mono">Web · selectivo</td></tr>
+            <tr><td><span class="name">Anara Publishing</span></td><td>Indie sync</td><td class="mono">40%</td><td class="mono">Web</td></tr>
+            <tr><td><span class="name">Taxi</span></td><td>Marketplace briefs</td><td class="mono">Membership</td><td class="mono">Web</td></tr>
+            <tr><td><span class="name">Sentric / Kobalt Neighbouring</span></td><td>PRO admin</td><td class="mono">%</td><td class="mono">Web</td></tr>
+          </tbody>
+        </table></div>
+
+        <div class="note"><span class="note-k">Acción P1</span><p>Registrá todo tu catálogo en <strong>SGAE</strong> (España) o <strong>SADAIC</strong> (Argentina) + <strong>PRS/BMI</strong> para USA. Sin PRO, cero cobro por sync. Y prepará versiones <em>instrumental / clean / 30s / 15s / stems</em> de cada track — sin eso, ninguna agencia sync te compra.</p></div>
+
+        <p class="prose">
+          <strong>Idea diferencial</strong>: pitch directo a agencias creativas de marcas que ya usan afro/latin house — <em>Corona · Estrella Damm · Perrier · Alfa Romeo · Zara · Nike Football LATAM · Adidas Originals · Louis Vuitton</em> — con tu track + un concept fit de 3 líneas a <em>Ogilvy · Wieden+Kennedy · McCann</em>. Tierra muy fértil, casi nadie la pisa directo.
+        </p>
+      </section>
+
+      <!-- 09 ESCENARIOS ===================================================== -->
+      <section id="c9" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">09</div>
+          <h2 class="chapter-title">Escenarios &mdash; <em>donde suena.</em></h2>
+          <p class="chapter-lede">Un track vive dos veces: en Beatport y en el club. Estos son los clubes donde tu sonido pertenece.</p>
+        </div>
+
+        <h3 class="subhead">Ibiza 2026 · corredor afro house</h3>
+        <div class="prose">
+          <ul>
+            <li><strong>Hï Ibiza</strong> — Black Coffee (sábados), Solèy by Francis Mercier (lunes), HUGEL's Make The Girls Dance (miércoles)</li>
+            <li><strong>[UNVRS]</strong> — Keinemusik one-offs, especiales Black Coffee</li>
+            <li><strong>Pacha</strong> — Solomun +1, Keinemusik 24 mayo</li>
+            <li><strong>DC-10</strong> — Circoloco, Keinemusik all-nighter (8 julio)</li>
+            <li><strong>Blue Marlin · Nikki Beach · Cala Bassa · Nassau</strong> — sunset warm-ups (tu puerta de entrada real)</li>
+          </ul>
+        </div>
+
+        <h3 class="subhead">Barcelona</h3>
+        <div class="prose">
+          <p>Nitsa &middot; Razzmatazz &middot; Input &middot; Pacha BCN &middot; Opium &middot; Bling Bling &middot; Alegria &middot; Elrow (Viladecans/Poblenou) &middot; Off Sónic &middot; Brunch In The City / Brunch Electronik &middot; DGTL Barcelona.</p>
+        </div>
+
+        <h3 class="subhead">LATAM 2026 · tu ruta</h3>
+        <div class="prose">
+          <ul>
+            <li><strong>Warung</strong> (Itajaí) &middot; <strong>Green Valley</strong> — afro/tech destination clubs BR</li>
+            <li><strong>Mandarine Park · Forja · Fabric BA</strong></li>
+            <li><strong>Baum · Bougainvillea</strong> (AR/CL)</li>
+            <li><strong>Blondie</strong> (CL) &middot; <strong>Delirio · La Cocha</strong> (Medellín)</li>
+            <li><strong>Amsterdam · La Panamericana</strong> (São Paulo)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 10 DIFERENCIALES ================================================== -->
+      <section id="c10" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">10</div>
+          <h2 class="chapter-title">Diferenciales &mdash; el spider <em>más profundo.</em></h2>
+          <p class="chapter-lede">Todo lo de arriba lo hace mucha gente. Estas son las ramas del árbol que casi nadie pisa. Aquí te separás del 99%.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card"><span class="k">A</span><span class="h">Sample pack en Splice</span><span class="d">Un <em>Splice Sessions</em> firmado por Fzanelli con percusiones afro/latin propias. Cada beatmaker que use tus loops tiene tu nombre en su DAW. Royalties recurrentes + marca de productor "reputado".</span><span class="m">Splice creator portal · responder briefs oficiales</span></div>
+          <div class="card"><span class="k">B</span><span class="h">Loopcloud pack propio</span><span class="d">"Afro-Latin House Grooves — by Fzanelli". Producto digital que vive en el DAW de miles de productores.</span><span class="m">Loopmasters / Loopcloud submission</span></div>
+          <div class="card"><span class="k">C</span><span class="h">IRL sonoro embebido</span><span class="d">Clase de yoga sunset en la playa BCN/Ibiza con tu track de fondo. 100 personas en trance, alguien graba. Viral vertical asegurada.</span><span class="m">Yoga studios · warm-up brand partners</span></div>
+          <div class="card"><span class="k">D</span><span class="h">TikTok sound seeding</span><span class="d">Subí el sonido oficial vos primero. Contratá 20-40 nano-creators ($10-150 c/u) con 3 ángulos culturales rotados: fashion reveal · POV romántico Ibiza · choreo. Adopción 48-72h. Reach efficiency 54.9× vs mega.</span><span class="m">Chartlex / LaunchpointHQ playbook</span></div>
+          <div class="card"><span class="k">E</span><span class="h">Twitch demo review</span><span class="d">Space Yacht Twitch streams: reviews en vivo. Envía y conseguí reacción + audience. Extra: serie propia "5254 Lab" produciendo en directo.</span><span class="m">Space Yacht Twitch · propio canal</span></div>
+          <div class="card"><span class="k">F</span><span class="h">Colab estratégica</span><span class="d">Featuring con voz argentina cool (Nathy Peluso vibe · Silvana Estrada tone) + remix intercambio con productor angoleño/portugués: infiltrás el eje PT ↔ Angola ↔ BR (el afro real europeo).</span><span class="m">Barter directo</span></div>
+          <div class="card"><span class="k">G</span><span class="h">Compilation-hacking</span><span class="d">Beatport curated comps ("Afro Ibiza Selects", "Sunset Sessions Vol.X") revisan open-call. Más fácil que un EP entero.</span><span class="m">Beatport comp submissions</span></div>
+          <div class="card"><span class="k">H</span><span class="h">5254 Radio mensual</span><span class="d">1 hora mensual · guest DJ invitado · sube a Mixcloud + YT + Spotify podcast. Bookers escuchan estos shows para curar warm-ups.</span><span class="m">Mixcloud Pro · YT · Spotify for Podcasters</span></div>
+          <div class="card"><span class="k">I</span><span class="h">Vinyl 300u selectivo</span><span class="d">Prensá 300 copias en Optimal DE o Vinilos BCN. Colocás en Phonica UK · Hard Wax DE · Rush Hour NL · Kristina Ibiza. No es venta — es que curators editoriales de RA lean tu nombre en esas tiendas.</span><span class="m">Optimal · Vinilos BCN · Discos Paradiso</span></div>
+          <div class="card"><span class="k">J</span><span class="h">Discord &amp; Reddit</span><span class="d">/r/tech_house · /r/Afrohouse · Tech House Market Discord (4.7K prods) · Future House Discord. Participá 2 semanas antes de pedir feedback.</span><span class="m">Discord invites · Reddit karma</span></div>
+          <div class="card"><span class="k">K</span><span class="h">Prensa narrativa</span><span class="d">"Argentino en BCN, afro house con ADN latino, sello boutique 5254" = tres pitchs distintos a DJ Mag ES · Vice música · Playground · Los Inrocks. Historia con foto, tres audiencias.</span><span class="m">Cold email + press kit</span></div>
+          <div class="card"><span class="k">L</span><span class="h">YouTube Chapters propio</span><span class="d">Tu segundo canal @FzanelliChapters como cuartel general long-form. "Sunset mix filmado en X terraza de Barcelona" (Cercle low-budget). Cada capítulo alimenta 30 clips verticales.</span><span class="m">YT · Rodecaster · Sony ZV-E1</span></div>
+          <div class="card"><span class="k">M</span><span class="h">Manifiesto 5254</span><span class="d">Tu sello no es logo — es voz curatorial. Manifiesto de una página en la web, traducido a EN y ES-neutro. Deb Never · sellos boutique exitosos se construyeron así.</span><span class="m">fzanelli.com/5254</span></div>
+          <div class="card"><span class="k">N</span><span class="h">Producer tag sonoro</span><span class="d">Un tag de 1s (voz susurrando "5254" o "Fzanelli, Barcelona") al inicio de cada track. Firma audible. Cuando otro DJ te pincha, el crowd sabe quién sos.</span><span class="m">Studio recording · 24-bit sample</span></div>
+          <div class="card"><span class="k">O</span><span class="h">Data feedback loop</span><span class="d">Songstats o Chartmetric: qué DJs pinchan, qué playlists agregan, qué mercados crecen. Cada 30 días decidir en base al dato. 1001Tracklists promo pool también.</span><span class="m">Songstats · Chartmetric · 1001TL</span></div>
+          <div class="card"><span class="k">P</span><span class="h">Newsletter propio</span><span class="d">Fans de Spotify no son tuyos. Newsletter fzanelli.com — 1 email/mes: link a release · historia detrás · un unreleased edit. Vale 10× una playlist add.</span><span class="m">Beehiiv / Mailchimp</span></div>
+          <div class="card"><span class="k">Q</span><span class="h">Pitch directo a agencias creativas</span><span class="d">Marcas usando afro/latin: Corona · Estrella Damm · Zara · Nike Football LATAM. Pitch directo con concept fit de 3 líneas a Ogilvy · Wieden+Kennedy · McCann. Casi nadie lo hace.</span><span class="m">Cold email a creative directors</span></div>
+          <div class="card"><span class="k">R</span><span class="h">Masterclass en escuelas</span><span class="d">Point Blank Ibiza/BCN · SAE Barcelona · Microfusa. 30 alumnos × su IG × network de futuros productores que un día firman en 5254. Cero coste.</span><span class="m">Cold pitch a program directors</span></div>
+          <div class="card"><span class="k">S</span><span class="h">Groove Lab → remix challenge</span><span class="d">Ya tenés la herramienta técnica en fzanelli.com. Convocá: "reconstruye el groove de mi próximo release, el mejor va como remix bonus del EP". Guardás emails de participantes, filtrás un ganador.</span><span class="m">Groove Lab · IG anuncio</span></div>
+          <div class="card"><span class="k">T</span><span class="h">Cercle low-budget</span><span class="d">Filmar en Park Güell · Montjuïc · rooftop BCN · puerto La Boca BA. Cámara buena + Rodecaster + Serato. Coste &lt;1000€/episodio. Alto impacto emocional.</span><span class="m">Producción propia</span></div>
+          <div class="card"><span class="k">U</span><span class="h">Track-of-the-week a un DJ tastemaker</span><span class="d">Enviás 4 semanas seguidas 1 track distinto (no spam) a 1 DJ referencia. Al 4º, uno cae. Estrategia probada tech house UK.</span><span class="m">Email personal directo</span></div>
+          <div class="card"><span class="k">V</span><span class="h">Firmar productor SA en 5254</span><span class="d">Firmá 1 track de un productor sudafricano emergente en 5254. Ahora es tu embajador en SA, te devuelve el favor con contactos. Reciprocidad estructural.</span><span class="m">A&amp;R propio</span></div>
+        </div>
+      </section>
+
+      <!-- 11 PLAN 90 DÍAS =================================================== -->
+      <section id="c11" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">11</div>
+          <h2 class="chapter-title">Plan 90 días &mdash; próximo <em>Tech House.</em></h2>
+          <p class="chapter-lede">Del master a las estadísticas post-mortem, en cinco fases. Cada paso es una casilla.</p>
+        </div>
+
+        <div class="timeline">
+
+          <div class="tl-block">
+            <div class="tl-when">D-90 → D-60<br><small style="letter-spacing:0.05em;color:var(--fg-3);text-transform:none;font-size:0.7rem">Master &middot; pre-prod</small></div>
+            <div class="tl-what">
+              <h4>Master &amp; preparación</h4>
+              <ol>
+                <li>Master Beatport-friendly (~-8 LUFS, sin over-limit).</li>
+                <li>Registro composición en SGAE + ISWC.</li>
+                <li>Registro grabación con ISRC 5254.</li>
+                <li>Assets: cover 3000×3000, teaser 15s, 30s, snippet vertical.</li>
+                <li>Enviar demo privado (SoundCloud unlisted) a los 10 sellos P1 tech. Deadline 21 días.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="tl-block">
+            <div class="tl-when">D-60 → D-30<br><small style="letter-spacing:0.05em;color:var(--fg-3);text-transform:none;font-size:0.7rem">Firma &middot; setup</small></div>
+            <div class="tl-what">
+              <h4>Firma o auto-release</h4>
+              <ol>
+                <li>Si un sello firma → seguí su timing y Beatport Hype.</li>
+                <li>Si no → auto-release 5254 vía Label Worx (o Proton). Beatport priority garantizada.</li>
+                <li>Pre-order 4 semanas antes en Beatport (exclusiva 2 semanas pre-DSPs).</li>
+                <li>Pitch Spotify for Artists (mínimo 7 días antes).</li>
+                <li>Envío promo pool: Reaktion, 1001Tracklists Promo, DJ Pool Records.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="tl-block">
+            <div class="tl-when">D-30 → D-14<br><small style="letter-spacing:0.05em;color:var(--fg-3);text-transform:none;font-size:0.7rem">Warm-up</small></div>
+            <div class="tl-what">
+              <h4>Calentamiento social &amp; radio</h4>
+              <ol>
+                <li>Snippet 15s TikTok · coordinar 20 nano-creators con el mismo hook.</li>
+                <li>Historias IG con teaser vertical.</li>
+                <li>Sneak-peek en 5254 Radio show #01 (Mixcloud + YT).</li>
+                <li>Enviar mix con el track a Ibiza Global · Loca FM · Data Transmission · Rinse (ElectrAfrique).</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="tl-block">
+            <div class="tl-when">D-14 → D-0<br><small style="letter-spacing:0.05em;color:var(--fg-3);text-transform:none;font-size:0.7rem">Release week</small></div>
+            <div class="tl-what">
+              <h4>Release semana</h4>
+              <ol>
+                <li>Campaña Groover ~€100 (~50 curators, feedback garantizado).</li>
+                <li>SubmitHub $30-50 en curators verificados tech house.</li>
+                <li>Pitch a bloggers (Beatportal si Hype, When We Dip, Data Transmission, DJ Mag ES).</li>
+                <li>Newsletter + Beatport link + Spotify link.</li>
+                <li>Post en /r/tech_house y Tech House Market Discord (contexto, no spam).</li>
+                <li>Pitch a Beatport Hype (si aplicable).</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="tl-block">
+            <div class="tl-when">D+0 → D+30<br><small style="letter-spacing:0.05em;color:var(--fg-3);text-transform:none;font-size:0.7rem">Post-release</small></div>
+            <div class="tl-what">
+              <h4>Post-mortem &amp; expansión</h4>
+              <ol>
+                <li>Monitor Songstats/Chartmetric. Identificá 5 playlists que te agregaron → gracias curator + próximo track antes que a nadie.</li>
+                <li>Enviá a agencias sync (Audiosocket, La Crème) con versión instrumental + clean + 30s.</li>
+                <li>Generá 4 clips verticales del proceso de producción (BTS) → TT/Reels.</li>
+                <li>Análisis de datos: mercados con mejor respuesta → orientá booking.</li>
+                <li>Post-mortem escrito de 1 página para el sello. Aprender antes del próximo drop.</li>
+              </ol>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 12 TL;DR =========================================================== -->
+      <section id="c12" class="chapter">
+        <div class="chapter-head">
+          <div class="chapter-num">12</div>
+          <h2 class="chapter-title">Una <em>pantalla.</em></h2>
+          <p class="chapter-lede">Si tenés 90 segundos, esto es lo que importa.</p>
+        </div>
+
+        <div class="prose">
+          <p><strong>Distribuir 5254 desde ya</strong> — Label Worx o Proton (bajar de DistroKid).</p>
+          <p><strong>Sellos P1 este mes</strong> — MoBlack, Sondela, Elrow, Los Bandidos, Get Physical, Merecumbé, Toolroom, Spinnin' Deep, Anjunadeep, Innervisions (LabelRadar), Digital Delight.</p>
+          <p><strong>Playlist P1</strong> — Spotify for Artists + Groover (€100) + SubmitHub ($40) + outreach manual con PlaylistLookup a 30 curators verificados Afro/Tech.</p>
+          <p><strong>Radios P1</strong> — Ibiza Global, Loca FM, Rinse (ElectrAfrique), Data Transmission, Ibiza Live, HouseTech, DELTA (AR), Radio Nova (PT).</p>
+          <p><strong>Diferencial que nadie pisa</strong> — (a) sync/publishing con PRO registrado; (b) Splice sample pack; (c) 5254 Radio mensual; (d) newsletter propio; (e) sound seeding TikTok con nano-creators AR/BCN; (f) 300u vinilo para Phonica/Hard Wax/Kristina; (g) Groove Lab como remix challenge.</p>
+        </div>
+
+        <div class="note rose">
+          <span class="note-k">La palanca cultural</span>
+          <p>Sos de los pocos argentinos haciendo afro house serio desde Barcelona, con sello boutique y gira LATAM 2026 confirmada. La <strong>narrativa</strong> es tu ventaja competitiva. Úsala en cada pitch, cada press release, cada radio bio. Nunca la olvides.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <div>
+      <div class="fl-brand">5254 · Distribution Map</div>
+      <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.18em;color:var(--fg-4);text-transform:uppercase;margin-top:0.4rem;">
+        Preparado para Fzanelli · Actualizar por trimestre
+      </div>
+    </div>
+    <div class="fl-meta">
+      Dossier interno<br>
+      Versión 01 · 2026-09<br>
+      Barcelona &middot; Buenos Aires
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Genre filter for labels table
+  (function(){
+    var chips = document.querySelectorAll('.genre-filter .chip');
+    var rows = document.querySelectorAll('#labels-table tbody tr');
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        var g = chip.dataset.genre;
+        chips.forEach(function(c){
+          c.classList.toggle('active', c === chip);
+          c.setAttribute('aria-selected', c === chip ? 'true' : 'false');
+        });
+        rows.forEach(function(row){
+          if (g === 'all' || row.dataset.g === g) {
+            row.hidden = false;
+          } else {
+            row.hidden = true;
+          }
+        });
+      });
+    });
+  })();
+
+  // TOC active state on scroll
+  (function(){
+    var links = document.querySelectorAll('.toc a');
+    var sections = Array.from(document.querySelectorAll('section.chapter'));
+    function update(){
+      var y = window.scrollY + 140;
+      var current = sections[0];
+      sections.forEach(function(s){ if (s.offsetTop <= y) current = s; });
+      links.forEach(function(l){
+        var isActive = l.getAttribute('href') === '#' + current.id;
+        l.style.color = isActive ? 'var(--fg)' : '';
+        var num = l.querySelector('.num');
+        if (num) num.style.color = isActive ? 'var(--amber)' : '';
+      });
+    }
+    document.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+</script>
